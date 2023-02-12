@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-sans bg-slate-900 text-white;
+}
+
+h1, h2, h3, h4, h5 {
+  @apply font-serif;
+}
+
+.input-group {
+  @apply flex flex-col
+}
+
+.input {
+  @apply border rounded border-white/20 focus:border-white bg-transparent px-4 py-2 focus:outline-0 text-sm;
+}
+
+label {
+  @apply text-sm text-white/50;
+}
+
+button {
+  @apply bg-white/5 px-4 py-2 rounded shadow hover:bg-white/10;
+}
+
+.buttons {
+  @apply flex items-center gap-4;
+}
