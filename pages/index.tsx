@@ -17,7 +17,7 @@ export default function Home() {
         />
       </Head>
       <main className={clsx(inter.className)}>
-        <p>hello</p>
+        <p className="text-indigo-600">hello</p>
       </main>
     </>
   )
