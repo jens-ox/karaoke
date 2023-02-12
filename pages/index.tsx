@@ -1,6 +1,10 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function Home() {
+  const [name, setName] = useState('')
+  const [gameId, setGameId] = useState('')
+
   return (
     <>
       <Head>
@@ -19,15 +23,27 @@ export default function Home() {
           </h1>
           <div className="input-group">
             <label htmlFor="name">Player Name</label>
-            <input type="text" className="input" placeholder="Your Name" />
+            <input
+              type="text"
+              className="input"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div className="input-group">
             <label htmlFor="game">Game ID</label>
-            <input type="text" className="input" placeholder="123abc" />
+            <input
+              type="text"
+              className="input"
+              placeholder="123abc"
+              value={gameId}
+              onChange={(e) => setGameId(e.target.value)}
+            />
           </div>
           <div className="buttons">
             <button>Singleplayer</button>
-            <button>Join Game</button>
+            <button disabled={gameId === '' || name === ''}>Join Game</button>
           </div>
         </div>
       </main>

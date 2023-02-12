@@ -26,6 +26,10 @@ button {
   @apply bg-white/5 px-4 py-2 rounded shadow hover:bg-white/10;
 }
 
+button:disabled {
+  @apply bg-transparent cursor-default text-white/50;
+}
+
 .buttons {
   @apply flex items-center gap-4;
 }
