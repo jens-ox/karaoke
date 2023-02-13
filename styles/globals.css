@@ -22,11 +22,11 @@ label {
   @apply text-sm text-white/50;
 }
 
-button {
+.button {
   @apply bg-white/5 px-4 py-2 rounded shadow hover:bg-white/10;
 }
 
-button:disabled {
+.button:disabled {
   @apply bg-transparent cursor-default text-white/50;
 }
 

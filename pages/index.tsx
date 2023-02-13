@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Home() {
@@ -42,8 +43,12 @@ export default function Home() {
             />
           </div>
           <div className="buttons">
-            <button>Singleplayer</button>
-            <button disabled={gameId === '' || name === ''}>Join Game</button>
+            <Link href="/play" className="button">
+              Singleplayer
+            </Link>
+            <button className="button" disabled={gameId === '' || name === ''}>
+              Join Game
+            </button>
           </div>
         </div>
       </main>
