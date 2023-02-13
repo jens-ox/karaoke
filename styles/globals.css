@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-sans bg-slate-900 text-white;
+main {
+  @apply font-sans bg-slate-900 text-white min-h-screen p-4;
 }
 
 h1, h2, h3, h4, h5 {
-  @apply font-serif;
+  @apply font-serif tracking-wide;
 }
 
 .input-group {

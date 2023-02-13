@@ -16,12 +16,12 @@ const Play: NextPage = () => {
   const song = useMemo(() => new Song(karaokeFile), [])
   return (
     <div>
-      <h1>Play</h1>
-      <div className="flex items-center gap-6">
-        <div className="overflow-x-scroll inline-block flex-1">
+      <h1 className="mb-8">Play</h1>
+      <div className="flex gap-6">
+        <div className="overflow-x-scroll">
           <LyricsGraph song={song} />
         </div>
-        <div className="flex-1">
+        <div>
           <YouTube videoId={data.youtube} />
         </div>
       </div>

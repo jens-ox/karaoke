@@ -26,18 +26,16 @@ export class Song {
           const [name, value] = line.split(':')
           this.setTag(name, value)
         } else if (line.length > 1) {
-          const rawArray = line.split(' ')
-          const result = rawArray.slice(0, 4)
-          result.push(rawArray.slice(4).join(' '))
-          let pitch = parseInt(result[3])
+          const [type, beat, duration, rawPitch, ...textArray] = line.split(' ')
+          let pitch = parseInt(rawPitch)
           pitch = pitch < 0 ? 12 - pitch * -1 : pitch
           this.lyrics.push({
             id: index,
-            type: result[0] as LineType,
-            beat: parseInt(result[1]),
-            duration: parseInt(result[2]),
+            type: type as LineType,
+            beat: parseInt(beat),
+            duration: parseInt(duration),
             pitch,
-            text: decodeURIComponent(result[4])
+            text: decodeURIComponent(textArray.join(' '))
           })
         }
       },
@@ -111,5 +109,9 @@ export class Song {
       }
       return acc
     }, 0)
+  }
+
+  get renderLyrics() {
+    return this.lyrics.filter((l) => [LineType.FREESTYLE, LineType.GOLDEN, LineType.REGULAR].includes(l.type))
   }
 }
