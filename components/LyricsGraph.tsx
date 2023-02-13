@@ -15,32 +15,30 @@ export const LyricsGraph: React.FC<LyricsGraphProps> = ({ song }) => {
   const chartHeight = useMemo(() => Math.abs(song.maxPitch - song.minPitch) * PITCH_HEIGHT, [song])
 
   return (
-    <div className="border border-white/10 rounded p-4">
-      <svg width={chartWidth} height={chartHeight} viewBox={`0 0 ${chartWidth} ${chartHeight}`}>
-        {/* position indicator */}
-        <path d={`M 0 ${song.minPitch * PITCH_HEIGHT} V ${song.maxPitch * PITCH_HEIGHT}`} id="position_indicator" />
+    <svg width={chartWidth} height={chartHeight} viewBox={`0 0 ${chartWidth} ${chartHeight}`}>
+      {/* position indicator */}
+      <path d={`M 0 ${song.minPitch * PITCH_HEIGHT} V ${song.maxPitch * PITCH_HEIGHT}`} id="position_indicator" />
 
-        {song.renderLyrics.map((l, i) => (
-          <g key={`song-line-${i}`}>
-            {l.type !== LineType.FREESTYLE && (
-              <rect
-                className="fill-white/20"
-                x={l.beat * BEAT_WIDTH}
-                y={PITCH_HEIGHT * (l.pitch - song.pitchOffset)}
-                width={l.duration * BEAT_WIDTH}
-                height={NOTE_HEIGHT}
-              />
-            )}
-            <text
-              className="text-sm fill-white"
+      {song.renderLyrics.map((l, i) => (
+        <g key={`song-line-${i}`}>
+          {l.type !== LineType.FREESTYLE && (
+            <rect
+              className="fill-white/20"
               x={l.beat * BEAT_WIDTH}
-              y={(l.pitch - song.pitchOffset) * PITCH_HEIGHT - 2}
-            >
-              {l.text}
-            </text>
-          </g>
-        ))}
-      </svg>
-    </div>
+              y={PITCH_HEIGHT * (l.pitch - song.pitchOffset)}
+              width={l.duration * BEAT_WIDTH}
+              height={NOTE_HEIGHT}
+            />
+          )}
+          <text
+            className="text-sm fill-white"
+            x={l.beat * BEAT_WIDTH}
+            y={(l.pitch - song.pitchOffset) * PITCH_HEIGHT - 2}
+          >
+            {l.text}
+          </text>
+        </g>
+      ))}
+    </svg>
   )
 }

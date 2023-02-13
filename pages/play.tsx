@@ -18,7 +18,7 @@ const Play: NextPage = () => {
     <div>
       <h1 className="mb-8">Play</h1>
       <div className="flex gap-6">
-        <div className="overflow-x-scroll">
+        <div className="overflow-x-scroll border border-white/10 rounded p-4">
           <LyricsGraph song={song} />
         </div>
         <div>
