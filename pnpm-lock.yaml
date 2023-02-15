@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@next/font': 13.1.6
+  '@types/audioworklet': ^0.0.36
   '@types/node': 18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.10
@@ -18,6 +19,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-promise: ^6.1.1
   next: 13.1.6
+  pitchy: ^4.0.7
   postcss: ^8.4.21
   prettier: ^2.8.4
   react: 18.2.0
@@ -28,6 +30,7 @@ specifiers:
 
 dependencies:
   '@next/font': 13.1.6
+  '@types/audioworklet': 0.0.36
   '@types/node': 18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.10
@@ -35,6 +38,7 @@ dependencies:
   eslint: 8.34.0
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+  pitchy: 4.0.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-youtube: 10.1.0_react@18.2.0
@@ -265,6 +269,10 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@types/audioworklet/0.0.36:
+    resolution: {integrity: sha512-aEE9vSGLA6fF4g9zp6Y2q2UE6GWMYliksQ3VSkR+5n87GqbbbeFiFRwoIBvN5ojc5i6lkIeHfzzNhMdQVNiWMg==}
     dev: false
 
   /@types/json-schema/7.0.11:
@@ -1369,6 +1377,10 @@ packages:
     dependencies:
       reusify: 1.0.4
 
+  /fft.js/4.0.4:
+    resolution: {integrity: sha512-f9c00hphOgeQTlDyavwTtu6RiK8AIFjD6+jvXkNkpeQ7rirK3uFWVpalkoS4LAwbdX7mfZ8aoBfFVQX1Re/8aw==}
+    dev: false
+
   /file-entry-cache/6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -2077,6 +2089,12 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /pitchy/4.0.7:
+    resolution: {integrity: sha512-AEMDKxw+o8eeLK432cJniBJLgQ+KgGb0QFFHMA+3v2wAqeYesVyoPSJqaezNZXdJnN+7nK+i8qVR/aQp/NLxiA==}
+    dependencies:
+      fft.js: 4.0.4
+    dev: false
 
   /postcss-import/14.1.0_postcss@8.4.21:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
