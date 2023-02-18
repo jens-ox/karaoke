@@ -64,9 +64,9 @@ export class Song {
       case 'mp3':
       case 'youtube':
         this[tagName] = tagValue
-        return
+        break
       default:
-        console.error(`Unknown tag name: "${tagName}"`)
+        break
     }
   }
 

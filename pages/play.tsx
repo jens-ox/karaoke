@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
+import { findDOMNode } from 'react-dom'
 import YouTube from 'react-youtube'
 import { PitchDetector } from 'pitchy'
 import { LyricsGraph } from '../components/LyricsGraph'
@@ -35,7 +36,7 @@ const Play: NextPage = () => {
   const [pitch, setPitch] = useState<number>()
   const [confidence, setConfidence] = useState<number>()
 
-  useEffect(() => {
+  const boot = () => {
     if (typeof window !== 'undefined') {
       const context = new AudioContext()
       startAudio(context).then((audio) => {
@@ -45,13 +46,10 @@ const Play: NextPage = () => {
         context.resume()
       })
     }
-  }, [])
+  }
 
   const ref = useRef<any>(null)
-
-  useEffect(() => {
-    ref.current?.internalPlayer.getCurrentTime().then((time: number) => console.log(time))
-  }, [ref])
+  const cursorRef = useRef<any>(null)
 
   const detectPitch = () => {
     if (!detector || !buffer || !analyzer) return
@@ -63,9 +61,34 @@ const Play: NextPage = () => {
   }
 
   const song = useMemo(() => new Song(karaokeFile), [])
+
+  const render = async () => {
+    if (!ref.current || !cursorRef.current) return
+
+    const node = findDOMNode(cursorRef.current) as Element
+
+    const state = await ref.current.internalPlayer.getPlayerState()
+    if (state !== 1) return
+
+    const time = await ref.current.internalPlayer.getCurrentTime()
+
+    const beat = song.getBeat(time)
+    node.setAttribute('x1', `${beat * 20}`)
+    node.setAttribute('x2', `${beat * 20}`)
+
+    requestAnimationFrame(render)
+  }
+
+  const start = () => {
+    requestAnimationFrame(render)
+  }
+
   return (
     <div>
       <h1 className="mb-8">Play</h1>
+      <button className="button" onClick={boot}>
+        Start Recorder
+      </button>
       <button className="button" onClick={detectPitch}>
         Detect Pitch
       </button>
@@ -85,10 +108,10 @@ const Play: NextPage = () => {
       )}
       <div className="flex gap-6">
         <div className="overflow-x-scroll border border-white/10 rounded p-4 flex flex-col justify-center">
-          <LyricsGraph song={song} />
+          <LyricsGraph song={song} cursorRef={cursorRef} />
         </div>
         <div>
-          <YouTube videoId={data.youtube} ref={ref} />
+          <YouTube onPlay={start} videoId={data.youtube} ref={ref} />
         </div>
       </div>
     </div>
